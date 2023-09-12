@@ -1,0 +1,101 @@
+asyncapi: 2.0.0
+info:
+  title: ms_rabbitmq_d
+  version: 1.0.1
+  description: Async api documentation of routing keys and payloads
+defaultContentType: application/json
+channels:
+  /notifications/send/system:
+    publish:
+      message:
+        payload:
+          $ref: '#/components/schemas/NotificationsSendSystem'
+        contentType: application/json
+      operationId: notificationsSendSystem
+    description: ' send, from notifications'
+  /users-roles-and-permissions/permissions/receiveAllFromService:
+    publish:
+      message:
+        payload:
+          $ref: >-
+            #/components/schemas/UsersRolesAndPermissionsPermissionsUpdateFromService
+        contentType: application/json
+      operationId: usersRolesAndPermissionsPermissionsReceiveAllFromService
+    description: ' permissions, from users-roles-and-permissions'
+  /users-roles-and-permissions/permissions/requestFromAll:
+    publish:
+      message:
+        payload:
+          $ref: >-
+            #/components/schemas/UsersRolesAndPermissionsPermissionsRequestFromAll
+        contentType: application/json
+      operationId: usersRolesAndPermissionsPermissionsRequestFromAll
+    description: ' permissions, from users-roles-and-permissions'
+  /users-roles-and-permissions/roles/changed:
+    publish:
+      message:
+        payload:
+          $ref: '#/components/schemas/UsersRolesAndPermissionsRolesAllRoles'
+        contentType: application/json
+      operationId: usersRolesAndPermissionsRolesChanged
+    description: ' roles, from users-roles-and-permissions'
+  /users-roles-and-permissions/roles/request:
+    publish:
+      message:
+        payload:
+          $ref: '#/components/schemas/UsersRolesAndPermissionsRolesRequestAll'
+        contentType: application/json
+      operationId: usersRolesAndPermissionsRolesRequest
+    description: ' roles, from users-roles-and-permissions'
+components:
+  schemas:
+    NotificationsSendSystem:
+      type: object
+      required:
+        - fromService
+        - jsonString
+      properties:
+        fromService:
+          type: string
+        jsonString:
+          type: string
+    UsersRolesAndPermissionsPermissionsRequestFromAll:
+      type: object
+      properties:
+        requestTime:
+          type: string
+          format: date-time
+    UsersRolesAndPermissionsPermissionsUpdateFromService:
+      type: object
+      required:
+        - fromService
+        - permissions
+      properties:
+        fromService:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+    UsersRolesAndPermissionsRolesAllRoles:
+      type: array
+      items:
+        type: object
+        required:
+          - roleName
+          - permissions
+        properties:
+          roleName:
+            type: string
+          permissions:
+            type: array
+            items:
+              type: string
+    UsersRolesAndPermissionsRolesRequestAll:
+      type: object
+      properties:
+        requestTime:
+          type: string
+          format: date-time
+        requestFrom:
+          type: string

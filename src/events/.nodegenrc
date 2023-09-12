@@ -1,0 +1,17 @@
+{
+  "nodegenDir": "rabbitMQ",
+  "nodegenMockDir": "/__mocks__",
+  "nodegenType": "server",
+  "helpers": {
+    "autoRequeue": false,
+    "subscribeOpIds": [
+      "usersRolesAndPermissionsPermissionsReceiveAllFromService",
+      "usersRolesAndPermissionsRolesRequest"
+    ],
+    "publishOpIds": [
+      "notificationsSendSystem",
+      "usersRolesAndPermissionsPermissionsRequestFromAll",
+      "usersRolesAndPermissionsRolesChanged"
+    ]
+  }
+}
