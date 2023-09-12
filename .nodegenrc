@@ -1,0 +1,28 @@
+{
+  "nodegenDir": "src/http",
+  "nodegenMockDir": "src/domains/__mocks__",
+  "nodegenType": "server",
+  "segmentFirstGrouping": 1,
+  "segmentSecondGrouping": 2,
+  "helpers": {
+    "stub": {
+      "jwtType": "JwtAccess",
+      "requestType": "NodegenRequest"
+    }
+  },
+  "injections": [
+    {
+      "isBaseTpl": true,
+      "source": "https://github.com/acr-lfr/generate-it-typescript-server.git",
+      "deleteFiles": [
+        "src/services/AccessTokenService.ts"
+      ]
+    },
+    {
+      "source": "https://github.com/acr-lfr/gen-it-ts-server-inject-rmq.git"
+    },
+    {
+      "source": "https://github.com/acr-lfr/gen-it-ts-inject-permissions-service.git"
+    }
+  ]
+}
